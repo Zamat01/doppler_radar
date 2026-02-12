@@ -33,27 +33,6 @@ options:
     state: enabled
 
 blocks:
-- name: attenuation
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: ''
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '1'
-    stop: '100'
-    value: '10'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [584, 8.0]
-    rotation: 0
-    state: enabled
 - name: rx_gain
   id: variable_qtgui_range
   parameters:
@@ -72,7 +51,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [456, 8.0]
+    coordinate: [536, 8.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -84,7 +63,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [200, 12]
+    coordinate: [176, 16.0]
     rotation: 0
     state: enabled
 - name: sq_level
@@ -126,7 +105,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 8.0]
+    coordinate: [280, 8.0]
     rotation: 0
     state: enabled
 - name: tune
@@ -210,6 +189,27 @@ blocks:
     coordinate: [1152, 12.0]
     rotation: 0
     state: enabled
+- name: tx_attenuation
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '100'
+    value: '10'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 8.0]
+    rotation: 0
+    state: enabled
 - name: volume
   id: variable_qtgui_range
   parameters:
@@ -251,6 +251,29 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [928, 548.0]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: tone_freq
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    showports: 'False'
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 168.0]
     rotation: 0
     state: enabled
 - name: analog_simple_squelch_cc_0
@@ -302,23 +325,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [1296, 600.0]
-    rotation: 0
-    state: enabled
-- name: audio_sink_0_0_1
-  id: audio_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    device_name: ''
-    num_inputs: '1'
-    ok_to_block: 'True'
-    samp_rate: '48000'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1176, 1232.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_mag_0
@@ -512,6 +518,32 @@ blocks:
     coordinate: [1128, 720.0]
     rotation: 0
     state: enabled
+- name: iio_pluto_sink_0
+  id: iio_pluto_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    attenuation1: tx_attenuation
+    bandwidth: '20000000'
+    buffer_size: '32768'
+    comment: ''
+    cyclic: 'False'
+    filter: ''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: '2400000000'
+    fstop: '0'
+    len_tag_key: ''
+    samplerate: int(samp_rate)
+    type: fc32
+    uri: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 148.0]
+    rotation: 0
+    state: enabled
 - name: iio_pluto_source_0_0
   id: iio_pluto_source
   parameters:
@@ -519,28 +551,28 @@ blocks:
     alias: ''
     bandwidth: '20000000'
     bbdc: 'True'
-    buffer_size: '0x4000'
+    buffer_size: '32768'
     comment: ''
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
-    frequency: tuning
+    frequency: '2400000000'
     fstop: '0'
-    gain1: '''fast_attack'''
+    gain1: '''manual'''
     len_tag_key: packet_len
-    manual_gain1: '64'
+    manual_gain1: rx_gain
     maxoutbuf: '0'
     minoutbuf: '0'
     quadrature: 'True'
     rfdc: 'True'
-    samplerate: sample_rate
+    samplerate: int(samp_rate)
     type: fc32
     uri: 192.168.2.1
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [272, 772.0]
+    coordinate: [8, 348.0]
     rotation: 0
     state: enabled
 - name: low_pass_filter_0_0
@@ -776,8 +808,8 @@ blocks:
 
 connections:
 - [analog_fm_demod_cf_0, '0', blocks_multiply_const_vxx_0_0, '0']
+- [analog_sig_source_x_0, '0', iio_pluto_sink_0, '0']
 - [analog_simple_squelch_cc_0, '0', analog_fm_demod_cf_0, '0']
-- [analog_wfm_rcv_0, '0', audio_sink_0_0_1, '0']
 - [blocks_complex_to_mag_0, '0', blocks_vector_to_stream_0, '0']
 - [blocks_keep_one_in_n_0, '0', blocks_stream_to_vector_1, '0']
 - [blocks_multiply_conjugate_cc_0, '0', blocks_stream_to_vector_0, '0']
