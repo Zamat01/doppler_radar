@@ -33,6 +33,27 @@ options:
     state: enabled
 
 blocks:
+- name: audio_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '100'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 8.0]
+    rotation: 0
+    state: enabled
 - name: rx_gain
   id: variable_qtgui_range
   parameters:
@@ -64,27 +85,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [176, 16.0]
-    rotation: 0
-    state: enabled
-- name: sq_level
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: Squelch
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '-100'
-    step: '5'
-    stop: '0'
-    value: '-50'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [712, 8.0]
     rotation: 0
     state: enabled
 - name: tone_freq
@@ -228,7 +228,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 8.0]
+    coordinate: [776, 8.0]
     rotation: 0
     state: enabled
 - name: analog_fm_demod_cf_0
@@ -310,6 +310,31 @@ blocks:
     coordinate: [1296, 600.0]
     rotation: 0
     state: enabled
+- name: band_reject_filter_0
+  id: band_reject_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    decim: '1'
+    gain: '1'
+    high_cutoff_freq: '505'
+    interp: '1'
+    low_cutoff_freq: '495'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate/50
+    type: fir_filter_ccf
+    width: '5'
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 372.0]
+    rotation: 0
+    state: enabled
 - name: blocks_complex_to_mag_0
   id: blocks_complex_to_mag
   parameters:
@@ -358,6 +383,24 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [720, 856.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: audio_gain
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 432.0]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0_0
@@ -582,30 +625,6 @@ blocks:
     coordinate: [280, 380.0]
     rotation: 0
     state: enabled
-- name: low_pass_filter_0_0
-  id: low_pass_filter
-  parameters:
-    affinity: ''
-    alias: ''
-    beta: '6.76'
-    comment: ''
-    cutoff_freq: 100e3
-    decim: '5'
-    gain: '1'
-    interp: '1'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samp_rate: sample_rate_RTL/5
-    type: fir_filter_ccf
-    width: 50e3
-    win: window.WIN_HAMMING
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [728, 1180.0]
-    rotation: 0
-    state: enabled
 - name: qtgui_freq_sink_x_3
   id: qtgui_freq_sink_x
   parameters:
@@ -817,6 +836,7 @@ connections:
 - [analog_fm_demod_cf_0, '0', blocks_multiply_const_vxx_0_0, '0']
 - [analog_sig_source_x_0, '0', iio_pluto_sink_0, '0']
 - [analog_simple_squelch_cc_0, '0', analog_fm_demod_cf_0, '0']
+- [band_reject_filter_0, '0', blocks_multiply_const_vxx_0, '0']
 - [blocks_complex_to_mag_0, '0', blocks_vector_to_stream_0, '0']
 - [blocks_keep_one_in_n_0, '0', blocks_stream_to_vector_1, '0']
 - [blocks_multiply_conjugate_cc_0, '0', blocks_stream_to_vector_0, '0']
@@ -831,9 +851,9 @@ connections:
 - [iio_pluto_source_0_0, '0', blocks_multiply_conjugate_cc_0, '0']
 - [iio_pluto_source_0_0, '0', low_pass_filter_0, '0']
 - [iio_pluto_source_0_0, '0', rational_resampler_xxx_0, '0']
+- [low_pass_filter_0, '0', band_reject_filter_0, '0']
 - [rational_resampler_xxx_0, '0', analog_simple_squelch_cc_0, '0']
 - [rational_resampler_xxx_1, '0', blocks_multiply_conjugate_cc_0, '1']
-- [rational_resampler_xxx_1, '0', low_pass_filter_0_0, '0']
 - [soapy_rtlsdr_source_0, '0', rational_resampler_xxx_1, '0']
 
 metadata:
