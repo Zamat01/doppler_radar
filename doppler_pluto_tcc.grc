@@ -108,87 +108,6 @@ blocks:
     coordinate: [280, 8.0]
     rotation: 0
     state: enabled
-- name: tune
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: ''
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '88'
-    step: '.2'
-    stop: '108'
-    value: '104.3'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1312, 8.0]
-    rotation: 0
-    state: enabled
-- name: tuning
-  id: variable_qtgui_chooser
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: station
-    label0: '101.3'
-    label1: '93.5'
-    label2: '94.1'
-    label3: '94.3'
-    label4: ''
-    labels: '[]'
-    num_opts: '4'
-    option0: '101300000'
-    option1: '93500000'
-    option2: '94100000'
-    option3: '94300000'
-    option4: '4'
-    options: '[0, 1, 2]'
-    orient: Qt.QVBoxLayout
-    type: real
-    value: '101300000'
-    widget: radio_buttons
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [992, 12.0]
-    rotation: 0
-    state: enabled
-- name: tuning_0
-  id: variable_qtgui_chooser
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: station
-    label0: '101.3'
-    label1: '93.5'
-    label2: '94.1'
-    label3: '94.3'
-    label4: ''
-    labels: '[]'
-    num_opts: '4'
-    option0: '101300000'
-    option1: '93500000'
-    option2: '94100000'
-    option3: '94300000'
-    option4: '4'
-    options: '[0, 1, 2]'
-    orient: Qt.QVBoxLayout
-    type: real
-    value: '101300000'
-    widget: radio_buttons
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1152, 12.0]
-    rotation: 0
-    state: enabled
 - name: tx_attenuation
   id: variable_qtgui_range
   parameters:
@@ -208,49 +127,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [408, 8.0]
-    rotation: 0
-    state: enabled
-- name: volume
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: Volume
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.050'
-    stop: '1'
-    value: '0.300'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [776, 8.0]
-    rotation: 0
-    state: enabled
-- name: analog_fm_demod_cf_0
-  id: analog_fm_demod_cf
-  parameters:
-    affinity: ''
-    alias: ''
-    audio_decim: audio_decimation
-    audio_pass: '16000'
-    audio_stop: '20000'
-    chan_rate: int(sample_rate/rf_decimation)
-    comment: ''
-    deviation: deviation
-    gain: '1.0'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    tau: 75e-6
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [928, 548.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -276,24 +152,7 @@ blocks:
     coordinate: [8, 168.0]
     rotation: 0
     state: enabled
-- name: analog_simple_squelch_cc_0
-  id: analog_simple_squelch_cc
-  parameters:
-    affinity: ''
-    alias: ''
-    alpha: '1'
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    threshold: '-50'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [736, 592.0]
-    rotation: 0
-    state: enabled
-- name: audio_sink_0_0_0
+- name: audio_sink_0
   id: audio_sink
   parameters:
     affinity: ''
@@ -307,7 +166,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1296, 600.0]
+    coordinate: [1152, 560.0]
     rotation: 0
     state: enabled
 - name: band_reject_filter_0
@@ -348,7 +207,23 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1384, 752.0]
+    coordinate: [1408, 296.0]
+    rotation: 0
+    state: enabled
+- name: blocks_complex_to_real_0
+  id: blocks_complex_to_real
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [976, 568.0]
     rotation: 0
     state: enabled
 - name: blocks_keep_one_in_n_0
@@ -366,23 +241,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1984, 760.0]
-    rotation: 0
-    state: enabled
-- name: blocks_multiply_conjugate_cc_0
-  id: blocks_multiply_conjugate_cc
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [720, 856.0]
+    coordinate: [2016, 304.0]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0
@@ -400,25 +259,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [776, 432.0]
-    rotation: 0
-    state: enabled
-- name: blocks_multiply_const_vxx_0_0
-  id: blocks_multiply_const_vxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    const: '0.300'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    type: float
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1128, 600.0]
+    coordinate: [720, 432.0]
     rotation: 0
     state: enabled
 - name: blocks_skiphead_0
@@ -436,7 +277,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1776, 752.0]
+    coordinate: [1816, 296.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0
@@ -454,7 +295,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [920, 760.0]
+    coordinate: [976, 304.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_1
@@ -472,7 +313,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2152, 760.0]
+    coordinate: [2184, 304.0]
     rotation: 0
     state: enabled
 - name: blocks_vector_to_stream_0
@@ -490,7 +331,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1592, 760.0]
+    coordinate: [1616, 304.0]
     rotation: 0
     state: enabled
 - name: epy_block_1
@@ -520,7 +361,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2352, 760.0]
+    coordinate: [2368, 304.0]
     rotation: 0
     state: enabled
 - name: fft_vxx_0
@@ -541,7 +382,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1128, 720.0]
+    coordinate: [1160, 264.0]
     rotation: 0
     state: enabled
 - name: iio_pluto_sink_0
@@ -562,7 +403,7 @@ blocks:
     len_tag_key: ''
     samplerate: int(samp_rate)
     type: fc32
-    uri: ''
+    uri: 192.168.2.1
   states:
     bus_sink: false
     bus_source: false
@@ -643,7 +484,7 @@ blocks:
     autoscale: 'False'
     average: '1.0'
     axislabels: 'True'
-    bw: samp_rate
+    bw: samp_rate/50
     color1: '"blue"'
     color10: '"dark blue"'
     color2: '"red"'
@@ -703,7 +544,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [920, 952.0]
+    coordinate: [968, 464.0]
     rotation: 0
     state: enabled
 - name: qtgui_waterfall_sink_x_0
@@ -722,7 +563,7 @@ blocks:
     alpha8: '1.0'
     alpha9: '1.0'
     axislabels: 'True'
-    bw: samp_rate
+    bw: samp_rate/50
     color1: '0'
     color10: '0'
     color2: '0'
@@ -764,97 +605,27 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [920, 848.0]
-    rotation: 0
-    state: enabled
-- name: rational_resampler_xxx_0
-  id: rational_resampler_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    decim: '5'
-    fbw: '0'
-    interp: '1'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    taps: ''
-    type: ccc
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [528, 576.0]
-    rotation: 0
-    state: enabled
-- name: rational_resampler_xxx_1
-  id: rational_resampler_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    decim: '204'
-    fbw: '0'
-    interp: '192'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    taps: '[]'
-    type: ccc
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [512, 1088.0]
-    rotation: 0
-    state: enabled
-- name: soapy_rtlsdr_source_0
-  id: soapy_rtlsdr_source
-  parameters:
-    affinity: ''
-    agc: 'False'
-    alias: ''
-    bias: 'False'
-    bufflen: '16384'
-    center_freq: tuning
-    comment: ''
-    dev_args: ''
-    freq_correction: '0'
-    gain: '20'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samp_rate: samp_rate
-    type: fc32
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [272, 1008.0]
+    coordinate: [968, 360.0]
     rotation: 0
     state: enabled
 
 connections:
-- [analog_fm_demod_cf_0, '0', blocks_multiply_const_vxx_0_0, '0']
 - [analog_sig_source_x_0, '0', iio_pluto_sink_0, '0']
-- [analog_simple_squelch_cc_0, '0', analog_fm_demod_cf_0, '0']
 - [band_reject_filter_0, '0', blocks_multiply_const_vxx_0, '0']
 - [blocks_complex_to_mag_0, '0', blocks_vector_to_stream_0, '0']
+- [blocks_complex_to_real_0, '0', audio_sink_0, '0']
 - [blocks_keep_one_in_n_0, '0', blocks_stream_to_vector_1, '0']
-- [blocks_multiply_conjugate_cc_0, '0', blocks_stream_to_vector_0, '0']
-- [blocks_multiply_conjugate_cc_0, '0', qtgui_freq_sink_x_3, '0']
-- [blocks_multiply_conjugate_cc_0, '0', qtgui_waterfall_sink_x_0, '0']
-- [blocks_multiply_const_vxx_0_0, '0', audio_sink_0_0_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_complex_to_real_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_stream_to_vector_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_freq_sink_x_3, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_waterfall_sink_x_0, '0']
 - [blocks_skiphead_0, '0', blocks_keep_one_in_n_0, '0']
 - [blocks_stream_to_vector_0, '0', fft_vxx_0, '0']
 - [blocks_stream_to_vector_1, '0', epy_block_1, '0']
 - [blocks_vector_to_stream_0, '0', blocks_skiphead_0, '0']
 - [fft_vxx_0, '0', blocks_complex_to_mag_0, '0']
-- [iio_pluto_source_0_0, '0', blocks_multiply_conjugate_cc_0, '0']
 - [iio_pluto_source_0_0, '0', low_pass_filter_0, '0']
-- [iio_pluto_source_0_0, '0', rational_resampler_xxx_0, '0']
 - [low_pass_filter_0, '0', band_reject_filter_0, '0']
-- [rational_resampler_xxx_0, '0', analog_simple_squelch_cc_0, '0']
-- [rational_resampler_xxx_1, '0', blocks_multiply_conjugate_cc_0, '1']
-- [soapy_rtlsdr_source_0, '0', rational_resampler_xxx_1, '0']
 
 metadata:
   file_format: 1
